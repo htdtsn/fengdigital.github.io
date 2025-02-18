@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feng.digital</title>
+    <link rel="icon" type="image/x-icon" href="New Project (1).png">
+    <link rel="stylesheet" href="crt.css">
+    <meta property="og:image" content="New Project (1).png">
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+
+
+        @font-face {
+          font-family: 'as';
+          src: url('as.ttf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: 'as', monospace;
+            cursor: url('cursor.cur'), auto;
+        }
+
+        body {
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .noise,
+        .lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        .noise {
+            z-index: 400;
+            opacity: 0.8;
+            background: url('https://ice-creme.de/images/background-noise.png');
+            animation: noise 1s infinite alternate;
+        }
+
+        .lines {
+            z-index: 300;
+            opacity: 0.6;
+            background: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.1) 51%);
+            background-size: 100% 4px;
+            animation: scanlines 10s linear infinite;
+        }
+
+        .main {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family: 'VCR_OSD_MONO', monospace;
+            color: #fff;
+            font-size: 2rem;
+            width: 100vw;
+            height: 100vh;
+            background: #141414;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 20px 0;
+        }
+
+        .title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .audwin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 1000; /* Ensure it appears above other elements */
+    color: white;
+}
+
+.audio-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#albumCover {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 2px solid white;
+}
+
+
+        .controls a img {
+            height: 13px;
+            cursor: pointer;
+        }
+
+        .controls {
+            user-select: none;
+        }
+
+        #songInfo {
+            font-family: 'VCR OSD Mono';
+            font-size: 12px;
+        }
+
+        #songTitle {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #songInfo {
+            display: flex;
+        }
+
+        .social-media-button {
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-media-button:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 65%;
+            width: 100%;
+            font-size: 2rem;
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+            opacity: 0.8;
+            z-index: 500;
+            white-space: normal;
+        }
+
+        .footer2 {
+            position: fixed;
+            bottom: 35%;
+            width: 100%;
+            font-size: 2rem;
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+            opacity: 0.8;
+            z-index: 500;
+            white-space: normal;
+        }
+        
+        .footer2 img {
+           width: 30px; 
+           height: 30px; 
+        }
+
+        .secfooter {
+            position: fixed;
+            bottom: 70%;
+            width: 100%;
+            font-size: 7rem;
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+            opacity: 0.8;
+            z-index: 500;
+            white-space: normal;
+        }
+        .pinboard {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80vw;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            z-index: 400;
+        }
+        .pinned-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: rotate(var(--rotate));
+            transition: transform 0.3s ease;
+            z-index: 500;
+        }
+        .pinned-image:hover {
+            transform: scale(1.1) rotate(var(--rotate));
+        }
+
+        .secfooter .alternate {
+            font-family: 'alternateFont', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        
+
+        <audio id="audio"></audio>
+    </div>
+
+    <div class="secfooter" style="color: yellow;">
+        feng.digital
+    </div>
+
+    <div class="footer">
+        @fengeveryday on insta
+    </div>
+
+    <div class="footer2">
+        <a href="https://open.spotify.com/artist/278vNvolx8H3sQJ2hgOMnh?si=i9UOZedRSMiWImX1-kdy-Q"><img src="icons/spotify.png"></a>
+    </div>
+
+    <div class="audwin">
+        <img id="albumCover" src="covers/shotgun.jpg" alt="Album Cover">
+        <div class="audio-controls">
+            <p style="font-size:13px;margin-bottom:5px;color:white;">Now Playing:</p>
+            <div id="songInfo" class="text-center">
+                <div id="artist" style="color:white;">Artist</div>&nbsp;-&nbsp;
+                <div id="songTitle" style="color:white;">Song</div>
+            </div>
+            <div class="controls" style="margin-top:10px;margin-bottom:7px;">
+                <a onclick="previousAudio()" style="margin-right:10px;"><img src="icons/back.png"></a>
+                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="icons/play.png"></a>
+                <a onclick="nextAudio()"><img src="icons/next.png"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="pinboard">
+       <a href="https://open.spotify.com/album/1DcYrgxdL8Vw2yNs1NLSkA?si=swkEr6ydQz2dQF_a6Ul5_A"><img src="pfps/weekend.png" class="pinned-image" style="--rotate: -10deg;"></a>
+        <a href="https://open.spotify.com/album/24kJnyycwGzWbSBSWAGEPp?si=OU2qcmf8SUO5alhGHwg0cg"><img src="pfps/walk.png" class="pinned-image" style="--rotate: 15deg;"></a>
+        <a href="https://open.spotify.com/album/5asi6xhIro5qMzaEojet0l?si=m65jWaFhQqydcnA9NhKQtQ"><img src="pfps/wtfeng.png" class="pinned-image" style="--rotate: -5deg;"></a>
+        <a href="https://open.spotify.com/album/1W1qPtvtGafGxWWaZZtz1G?si=vcne5Aj-Tcu0vk_EObaLVw"><img src="pfps/girl.png" class="pinned-image" style="--rotate: 8deg;"></a>
+        <a href="https://open.spotify.com/album/5L6cNPVpPX1ChSDMzgtCn4?si=QTxFtrU1QiSLCE53uBF0DQ"><img src="pfps/mia.png" class="pinned-image" style="--rotate: -12deg;"></a>
+    </div>
+    
+    
+
+    <script src="music.js"></script>
+    <script>
+         const phrases = [
+            "what the feng",
+        ];
+
+        let currentPhraseIndex = 0;
+        let currentCharIndex = 0;
+        let typingForward = true;
+
+        function typeEffect() {
+            const secFooter = document.querySelector('.secfooter');
+            const phrase = phrases[currentPhraseIndex];
+
+            secFooter.innerHTML = phrase.substring(0, currentCharIndex) + "<span class='caret'></span>";
+
+            if (typingForward) {
+                currentCharIndex++;
+                if (currentCharIndex > phrase.length) {
+                    typingForward = false;
+                    setTimeout(typeEffect, 1000);
+                    return;
+                }
+            } else {
+                currentCharIndex--;
+                if (currentCharIndex === 0) {
+                    typingForward = true;
+                    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                }
+            }
+
+            setTimeout(typeEffect, typingForward ? 100 : 50);
+        }
+        
+        typeEffect();
+
+        window.addEventListener('message', function(event) {
+            if (event.data === 'playMusic') {
+                document.getElementById('overlays').style.display = 'none';
+                playMedia();
+            }
+        });
+    </script>
+</body>
+
+</html>
