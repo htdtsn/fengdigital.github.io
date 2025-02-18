@@ -58,7 +58,7 @@ var audioFiles = [
         image: "pfps/wtfeng.png"
     },
     {
-        src: "songs/XY.mp3",
+        src: "songs/xy2.mp3",
         artist: "Feng",
         song: "XY",
         image: "pfps/wtfeng.png"
@@ -76,7 +76,7 @@ var audioFiles = [
         image: "pfps/wtfeng.png"
     },
     {
-        src: "songs/artist.mp3",
+        src: "songs/mum.mp3",
         artist: "Feng",
         song: "Mum, im an artist",
         image: "pfps/wtfeng.png"
