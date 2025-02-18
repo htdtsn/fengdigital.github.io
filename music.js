@@ -1,6 +1,6 @@
 var audio = document.getElementById("audio");
 var playPauseButton = document.getElementById("playPauseButton");
-var albumCover = document.getElementById("albumCover"); // Reference to the album cover image
+var albumCover = document.getElementById("albumCover");
 
 var audioFiles = [
     {
