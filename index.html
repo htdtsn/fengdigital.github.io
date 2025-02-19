@@ -363,13 +363,46 @@
 
         @media (max-width: 768px) {
    
-    .page-navigation button {
-        margin-top: 20px;
+  
+    .footer {
+        position: fixed;
+        bottom: 65%; 
+        width: 100%;
+        font-size: 2rem;
+        text-align: center;
+        color: #fff;
+        padding: 10px;
+        opacity: 0.8;
+        z-index: 500;
+        white-space: normal;
     }
 
+
+    .title {
+        font-size: 2rem; 
+    }
+
+
+    .pinboard {
+        padding-top: 20px;
+    }
+
+    .pinned-image {
+        width: 90px; 
+        height: 90px;
+    }
+
+
+    .page-navigation button {
+        font-size: 0.85rem;
+        padding: 10px 20px;
+        margin-bottom: 60px; 
+    }
+
+  
     .footer2 {
         position: absolute;
-        bottom: 150px; 
+        bottom: 250px; 
         width: 100%;
         font-size: 1.5rem;
         text-align: center;
@@ -379,46 +412,26 @@
         z-index: 500;
         white-space: normal;
     }
+}
 
-    .pinboard {
-        padding-top: 40px;
+@media (max-width: 480px) {
+    .footer, .footer2 {
+        font-size: 1.2rem;
+    }
+
+    .footer2 {
+        bottom: 100px; /* Lower footer2 for smaller screens */
     }
 
     .pinned-image {
-        width: 90px; 
-        height: 90px;
+        width: 50px; /* Smaller album images for mobile */
+        height: 50px;
     }
 
     .page-navigation button {
-        font-size: 0.85rem;
-        padding: 10px 20px;
-        margin-bottom: 80px; 
-    }
-
-    .footer {
-        font-size: 1.5rem;
-        bottom: 80px; 
-    }
-
-    @media (max-width: 480px) {
-        .footer, .footer2 {
-            font-size: 1.2rem;
-        }
-
-        .footer2 {
-            bottom: 100px;
-        }
-
-        .pinned-image {
-            width: 50px;
-            height: 50px;
-        }
-
-        .page-navigation button {
-            font-size: 0.75rem;
-            padding: 8px 16px;
-            margin-bottom: 60px; 
-        }
+        font-size: 0.75rem;
+        padding: 8px 16px;
+        margin-bottom: 40px; /* Further adjust margin for small screens */
     }
 }
     </style>
