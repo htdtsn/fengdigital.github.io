@@ -14,11 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <style>
-
-
         @font-face {
-          font-family: 'as';
-          src: url('as.ttf') format('opentype');
+            font-family: 'as';
+            src: url('as.ttf') format('opentype');
         }
 
         * {
@@ -89,36 +87,36 @@
             text-align: center;
             margin-bottom: 20px;
         }
+
         .audwin {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    border-radius: 8px;
-    z-index: 1000;
-    color: white;
-}
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            color: white;
+        }
 
-.audio-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .audio-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-#albumCover {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border: 2px solid white;
-}
-
+        #albumCover {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 2px solid white;
+        }
 
         .controls a img {
             height: 13px;
@@ -189,10 +187,10 @@
             z-index: 500;
             white-space: normal;
         }
-        
+
         .footer2 img {
-           width: 30px; 
-           height: 30px; 
+            width: 30px;
+            height: 30px;
         }
 
         .secfooter {
@@ -207,19 +205,27 @@
             z-index: 500;
             white-space: normal;
         }
+
+
+        .page-content {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
         .pinboard {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80vw;
-            height: auto;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            z-index: 400;
         }
+
         .pinned-image {
             width: 120px;
             height: 120px;
@@ -229,67 +235,159 @@
             position: relative;
             transform: rotate(var(--rotate));
             transition: transform 0.3s ease;
-            z-index: 500;
         }
+
         .pinned-image:hover {
             transform: scale(1.1) rotate(var(--rotate));
         }
 
-        .secfooter .alternate {
-            font-family: 'alternateFont', sans-serif;
+        .page-navigation button {
+            background: #222;
+            border: none;
+            color: white;
+            font-family: 'as', monospace;
+            padding: 12px 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 700;
+
         }
 
+        .page-navigation button:hover {
+            background: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-container {
+            position: fixed;
+            bottom: -17%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 80vw;
+            height: 50vh;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 600;
+            color: white;
+        }
+
+        .shoutbox {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            max-width: 280px;
+            max-height: 220px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid yellow;
+            padding: 0;
+            box-sizing: border-box;
+            margin-left: 620px;
+
+
+        }
+
+
+
+        .shoutbox iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            background: #333;
+            border: none;
+
+        }
+
+        .credits {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: -80px;
+            z-index: 10;
+            overflow: auto;
+        }
+
+
+        .page-container.active .credits {
+            z-index: 20;
+            pointer-events: auto;
+        }
+
+        .page-container:not(.active) .credits {
+            pointer-events: none;
+        }
+
+        .credit-card {
+            background: #333;
+            border-radius: 12px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .credit-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .credit-card h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .credit-card p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+
         @media (max-width: 768px) {
-            .main {
-                font-size: 1.5rem;
+            .page-container {
+                width: 90vw;
+                height: 80vh;
             }
 
-            .audwin {
-                padding: 10px;
+            .credit-card {
+                width: 150px;
             }
 
-            .footer {
-                font-size: 1.2rem;
-            }
-
-            .secfooter {
-                font-size: 4rem;
-            }
-
-            .footer2 {
-                font-size: 1rem;
-                bottom: 30%;
-            }
-
-            .pinned-image {
+            .credit-card img {
                 width: 80px;
                 height: 80px;
             }
         }
 
         @media (max-width: 480px) {
-            .main {
-                font-size: 1.2rem;
+            .page-container {
+                width: 95vw;
+                height: 85vh;
             }
 
-            .audwin {
-                padding: 5px;
+            .credit-card {
+                width: 120px;
             }
 
-            .footer {
-                font-size: 1rem;
-            }
-            .footer2 {
-                font-size: 1rem;
-                bottom: 30%;
-            }
-            
-
-            .secfooter {
-                font-size: 2.5rem;
-            }
-
-            .pinned-image {
+            .credit-card img {
                 width: 60px;
                 height: 60px;
             }
@@ -299,8 +397,6 @@
 
 <body>
     <div class="main">
-        
-
         <audio id="audio"></audio>
     </div>
 
@@ -332,19 +428,35 @@
         </div>
     </div>
 
-    <div class="pinboard">
-       <a href="https://open.spotify.com/album/1DcYrgxdL8Vw2yNs1NLSkA?si=swkEr6ydQz2dQF_a6Ul5_A"><img src="pfps/weekend.png" class="pinned-image" style="--rotate: -10deg;"></a>
-        <a href="https://open.spotify.com/album/24kJnyycwGzWbSBSWAGEPp?si=OU2qcmf8SUO5alhGHwg0cg"><img src="pfps/walk.png" class="pinned-image" style="--rotate: 15deg;"></a>
-        <a href="https://open.spotify.com/album/5asi6xhIro5qMzaEojet0l?si=m65jWaFhQqydcnA9NhKQtQ"><img src="pfps/wtfeng.png" class="pinned-image" style="--rotate: -5deg;"></a>
-        <a href="https://open.spotify.com/album/1W1qPtvtGafGxWWaZZtz1G?si=vcne5Aj-Tcu0vk_EObaLVw"><img src="pfps/girl.png" class="pinned-image" style="--rotate: 8deg;"></a>
-        <a href="https://open.spotify.com/album/5L6cNPVpPX1ChSDMzgtCn4?si=QTxFtrU1QiSLCE53uBF0DQ"><img src="pfps/mia.png" class="pinned-image" style="--rotate: -12deg;"></a>
+
+    <div class="page-container">
+        <div class="page-navigation">
+            <button onclick="showPage('pinboard')">Albums</button>
+            <button onclick="showPage('shoutbox')">Shoutbox</button>
+        </div>
+
+        <div id="pinboard" class="page-content active">
+            <div class="pinboard">
+                <a href="https://open.spotify.com/album/1DcYrgxdL8Vw2yNs1NLSkA?si=swkEr6ydQz2dQF_a6Ul5_A"><img src="pfps/weekend.png" class="pinned-image" style="--rotate: -10deg;"></a>
+                <a href="https://open.spotify.com/album/24kJnyycwGzWbSBSWAGEPp?si=OU2qcmf8SUO5alhGHwg0cg"><img src="pfps/walk.png" class="pinned-image" style="--rotate: 15deg;"></a>
+                <a href="https://open.spotify.com/album/5asi6xhIro5qMzaEojet0l?si=m65jWaFhQqydcnA9NhKQtQ"><img src="pfps/wtfeng.png" class="pinned-image" style="--rotate: -5deg;"></a>
+                <a href="https://open.spotify.com/album/1W1qPtvtGafGxWWaZZtz1G?si=vcne5Aj-Tcu0vk_EObaLVw"><img src="pfps/girl.png" class="pinned-image" style="--rotate: 8deg;"></a>
+                <a href="https://open.spotify.com/album/5L6cNPVpPX1ChSDMzgtCn4?si=QTxFtrU1QiSLCE53uBF0DQ"><img src="pfps/mia.png" class="pinned-image" style="--rotate: -12deg;"></a>
+            </div>
+        </div>
+
+        <div id="shoutbox" class="page-content">
+            <div class="shoutbox">
+                <iframe src="https://fengdigital.ishoutbox.com" width="275" height="570" frameborder="0" valign="middle" allowtransparency="true"></iframe>
+            </div>
+        </div>
+
+        
     </div>
-    
-    
 
     <script src="music.js"></script>
     <script>
-         const phrases = [
+        const phrases = [
             "what the feng",
         ];
 
@@ -375,8 +487,19 @@
 
             setTimeout(typeEffect, typingForward ? 100 : 50);
         }
-        
+
         typeEffect();
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+
+            const selectedPage = document.getElementById(pageId);
+            selectedPage.classList.add('active');
+            selectedPage.style.display = 'block';
+        }
 
         window.addEventListener('message', function(event) {
             if (event.data === 'playMusic') {
